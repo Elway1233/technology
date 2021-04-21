@@ -35,6 +35,7 @@ public class Main {
         HashMap map = fio.task2();
         System.out.println(map);
         session.getTransaction().commit();
+        //
     }
     
 }
