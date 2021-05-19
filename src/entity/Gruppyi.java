@@ -36,7 +36,7 @@ public class Gruppyi  implements java.io.Serializable {
      private int kodPlana;
      private String status;
      private Date statusDate;
-     private profession prof;
+     private Profession prof;
      private Set<Studentyi> studentyis = new HashSet<Studentyi>(0);
 
     public Gruppyi() {
@@ -130,11 +130,11 @@ public class Gruppyi  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdProfession", nullable=false)
-    public profession getProfession() {
+    public Profession getProfession() {
         return this.prof;
     }
     
-    public void setProfession (profession prof) {
+    public void setProfession (Profession prof) {
         this.prof = prof;
     }
 
