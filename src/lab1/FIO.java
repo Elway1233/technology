@@ -6,10 +6,12 @@
 
 package lab1;
 
+import java.util.Date;
 import entity.Gruppyi;
 import entity.Studentyi;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -25,7 +27,7 @@ public  class FIO {
         this.session = session;
     }
     
-    public List<Studentyi> task1(){
+    public List<Studentyi> fio1(){
         String sql = "from Studentyi s";
         Query query = session.createQuery(sql);
         
@@ -33,7 +35,7 @@ public  class FIO {
         return rows;
     }
     
-    public HashMap task2(){
+    public HashMap fio2(){
         String sq1 = "from Gruppyi g";
         Query query = session.createQuery(sq1);
         
@@ -52,5 +54,25 @@ public  class FIO {
             } else if(words.length != 0) m.put(words[0], rows.size());
         }
         return m;
+    }
+    public void fios3(){
+        String sql = "from Gruppyi g";
+        Query query = session.createQuery(sql);
+        
+        List<Gruppyi> groups = query.list();
+        for(Gruppyi g : groups){
+            Date dt = new Date();
+            if(dt.getYear() - g.getDateForming().getYear() >= 4){
+                g.setStatus("disband");
+                g.setStatusDate(dt);
+                Set<Studentyi> studs = g.getStudentyis();
+                for(Studentyi s : studs){
+                    s.setStatus("graduate");
+                    s.setStatusDate(dt);
+                    session.update(s);
+                }
+                session.update(g);
+            }
+        }
     }
 }

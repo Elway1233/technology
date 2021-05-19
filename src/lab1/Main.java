@@ -27,12 +27,12 @@ public class Main {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         FIO fio = new FIO(session);
-        List<Studentyi> students = fio.task1();
+        List<Studentyi> students = fio.fio1();
         for(Studentyi student : students){
             System.out.println(student.toString());
         }
         System.out.println();
-        HashMap map = fio.task2();
+        HashMap map = fio.fio2();
         System.out.println(map);
         session.getTransaction().commit();
         //
