@@ -26,7 +26,7 @@ public class Main {
     public static void main(String[] args) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        FIO fio = new FIO(session);
+        FirstSecondName fio = new FirstSecondName(session);
         List<Studentyi> students = fio.fio1();
         for(Studentyi student : students){
             System.out.println(student.toString());
