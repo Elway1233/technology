@@ -27,7 +27,7 @@ public  class FirstSecondName {
         this.session = session;
     }
     
-    public List<Studentyi> fio1(){
+    public List<Studentyi> quest1(){
         String sql = "from Studentyi s";
         Query query = session.createQuery(sql);
         
@@ -35,7 +35,7 @@ public  class FirstSecondName {
         return rows;
     }
     
-    public HashMap fio2(){
+    public HashMap quest2(){
         String sq1 = "from Gruppyi g";
         Query query = session.createQuery(sq1);
         
@@ -55,7 +55,7 @@ public  class FirstSecondName {
         }
         return m;
     }
-    public void fios3(){
+    public void quest3(){
         String sql = "from Gruppyi g";
         Query query = session.createQuery(sql);
         
