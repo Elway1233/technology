@@ -1,9 +1,9 @@
 package entity;
-// Generated 10.02.2021 15:06:02 by Hibernate Tools 3.6.0
+// Generated 24.03.2021 14:43:15 by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,24 +32,25 @@ public class Gruppyi  implements java.io.Serializable {
 
      private Integer shifr;
      private String nazvanie;
-     private Date dataFormir;
+     private Date dateForming;
      private int kodPlana;
      private String status;
      private Date statusDate;
-     private List <Studentyi> studentyis;
+     private Profession prof;
+     private Set<Studentyi> studentyis = new HashSet<Studentyi>(0);
 
     public Gruppyi() {
     }
 
 	
-    public Gruppyi(String nazvanie, Date dataFormir, int kodPlana) {
+    public Gruppyi(String nazvanie, Date dateForming, int kodPlana) {
         this.nazvanie = nazvanie;
-        this.dataFormir = dataFormir;
+        this.dateForming = dateForming;
         this.kodPlana = kodPlana;
     }
-    public Gruppyi(String nazvanie, Date dataFormir, int kodPlana, String status, Date statusDate, List <Studentyi> studentyis) {
+    public Gruppyi(String nazvanie, Date dateForming, int kodPlana, String status, Date statusDate, Set<Studentyi> studentyis) {
        this.nazvanie = nazvanie;
-       this.dataFormir = dataFormir;
+       this.dateForming = dateForming;
        this.kodPlana = kodPlana;
        this.status = status;
        this.statusDate = statusDate;
@@ -77,13 +80,13 @@ public class Gruppyi  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="DataFormir", nullable=false, length=10)
-    public Date getDataFormir() {
-        return this.dataFormir;
+    @Column(name="DateForming", nullable=false, length=10)
+    public Date getDateForming() {
+        return this.dateForming;
     }
     
-    public void setDataFormir(Date dataFormir) {
-        this.dataFormir = dataFormir;
+    public void setDateForming(Date dateForming) {
+        this.dateForming = dateForming;
     }
 
     
@@ -117,16 +120,23 @@ public class Gruppyi  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="gruppyi")
-    public List <Studentyi> getStudentyis() {
+    public Set<Studentyi> getStudentyis() {
         return this.studentyis;
     }
     
-    public void setStudentyis(List <Studentyi> studentyis) {
+    public void setStudentyis(Set<Studentyi> studentyis) {
         this.studentyis = studentyis;
     }
 
-
-
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IdProfession", nullable=false)
+    public Profession getProfession() {
+        return this.prof;
+    }
+    
+    public void setProfession (Profession prof) {
+        this.prof = prof;
+    }
 
 }
 

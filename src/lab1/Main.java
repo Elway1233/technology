@@ -19,20 +19,20 @@ import utils.NewHibernateUtil;
  * @author 18753
  */
 public class Main {
-
+//1 more time
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        FIO fio = new FIO(session);
-        List<Studentyi> students = fio.task1();
+        FirstSecondName fsn = new FirstSecondName(session);
+        List<Studentyi> students = fsn.quest1();
         for(Studentyi student : students){
             System.out.println(student.toString());
         }
         System.out.println();
-        HashMap map = fio.task2();
+        HashMap map = fsn.quest2();
         System.out.println(map);
         session.getTransaction().commit();
         //
